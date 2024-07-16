@@ -1,0 +1,8 @@
+.vehicle-brand-pie-container {
+  height: 100%;
+}
+.vehicle-brand-pie-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

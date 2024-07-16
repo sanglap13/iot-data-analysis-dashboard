@@ -1,0 +1,11 @@
+.bar-container {
+  height: 100%;
+}
+.bar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.bar-chart-container {
+  height: 88%;
+}

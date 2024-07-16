@@ -1,0 +1,11 @@
+.vehicle-brand-bar-container {
+  height: 100%;
+}
+.vehicle-brand-bar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.bar-chart-container {
+  height: 88%;
+}

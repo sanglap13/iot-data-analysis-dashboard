@@ -1,0 +1,19 @@
+.card {
+  border-radius: 0.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+@media (width < 1132px) {
+  .card-title {
+    font-size: 20px !important;
+  }
+}
+@media (width < 700px) {
+  .card {
+    width: inherit;
+  }
+}

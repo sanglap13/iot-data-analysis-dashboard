@@ -1,0 +1,11 @@
+.sdk-int-bar-container {
+  height: 100%;
+}
+.sdk-int-bar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.bar-chart-container {
+  height: 88%;
+}

@@ -1,0 +1,8 @@
+.vehicle-cc-pie-container {
+  height: 100%;
+}
+.vehicle-cc-pie-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

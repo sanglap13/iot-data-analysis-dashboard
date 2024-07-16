@@ -1,0 +1,8 @@
+.device-brand-pie-container {
+  height: 100%;
+}
+.device-brand-pie-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
