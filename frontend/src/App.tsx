@@ -1,11 +1,21 @@
-import { lazy } from "react";
+import { lazy, useCallback, useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "./components/layout/navbar/Navbar";
+import { api } from "./utils/api/api";
 
 const Home = lazy(() => import("./components/pages/home/Home"));
 const UserInfo = lazy(() => import("./components/pages/usersInfo/UsersInfo"));
 
 const App = () => {
+  const getApiData = useCallback(async () => {
+    const userData = await api();
+    console.log(userData);
+  }, []);
+
+  useEffect(() => {
+    getApiData();
+  }, [getApiData]);
+
   return (
     <div className="App">
       <BrowserRouter>
