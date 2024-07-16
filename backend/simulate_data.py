@@ -4,7 +4,7 @@ import time
 from datetime import datetime
 
 # URL of the backend endpoint to send data to
-URL = 'http://localhost:8000/api/data/' 
+URL = 'http://localhost:8000/api/iot/data/' 
 
 # List of simulated device IDs
 DEVICE_IDS = ['device_1', 'device_2', 'device_3', 'device_4', 'device_5']
