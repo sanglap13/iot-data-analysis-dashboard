@@ -27,16 +27,16 @@ def generate_data():
             'sensor_value': sensor_value
         }
         
-        # Send data to the backend
+     
         response = requests.post(URL, json=data)
         
-        # Print response
+      
         if response.status_code == 201:
             print(f'Successfully sent data: {data}')
         else:
             print(f'Failed to send data: {response.text}')
         
-        # Wait for a few seconds before sending the next data point
+        
         time.sleep(5)
 
 if __name__ == "__main__":
