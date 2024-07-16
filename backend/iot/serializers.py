@@ -4,4 +4,4 @@ from .models import DeviceData
 class DeviceDataSerializer(serializers.ModelSerializer):
     class Meta:
         model = DeviceData
-        fields = ['device_id', 'timestamp', 'sensor_value']
+        fields = ['device_id', 'timestamp', 'temperature', 'humidity', 'other']

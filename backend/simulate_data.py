@@ -15,10 +15,19 @@ def generate_data():
         device_id = random.choice(DEVICE_IDS)
         
         # Generate random sensor value
-        sensor_value = random.uniform(0.0, 100.0)
+        temperature = random.uniform(-20.0, 50.0)  # Example range: -20 to 50 degrees Celsius
+        humidity = random.uniform(0.0, 100.0)      # Example range: 0 to 100 percent
+        other = random.uniform(0.0, 100.0)
         
         # Current timestamp
         timestamp = datetime.now().isoformat()
+
+        # Create sensor value object
+        sensor_value = {
+            'temperature': temperature,
+            'humidity': humidity,
+            'other': other
+        }
         
         # Create data payload
         data = {
