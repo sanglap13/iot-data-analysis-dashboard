@@ -1,11 +1,11 @@
-import React from 'react';
-import Box from '@mui/material/Box';
+import React from "react";
+import Box from "@mui/material/Box";
 import {
   DataGrid,
   GridToolbarContainer,
   GridToolbarExport,
-} from '@mui/x-data-grid';
-import { UserDataGridInfo } from '../../../@types/dataGrid.types';
+} from "@mui/x-data-grid";
+import { UserDataGridInfo } from "../../../@types/dataGrid.types";
 
 const CustomExportToolbar = () => {
   return (
@@ -18,7 +18,7 @@ const CustomExportToolbar = () => {
 const UserDataGrid: React.FC<any> = ({ dataGridColumns, dataGriduserInfo }) => {
   return (
     <div>
-      <Box sx={{ height: 700, width: '100%' }}>
+      <Box sx={{ height: 700, width: "100%" }}>
         <DataGrid<UserDataGridInfo>
           getRowId={(row) => row.username}
           rows={dataGriduserInfo}
