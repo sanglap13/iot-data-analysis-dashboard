@@ -10,16 +10,49 @@ import VehicleCCPie from "./vehicleCCPie/VehicleCCPie";
 import TopCard from "../../shared/topCard/TopCard";
 import UserInfoGrid from "../../shared/userInfoGrid/UserInfoGrid";
 import "./home.css";
+import { useCallback, useEffect, useState } from "react";
+import { api } from "../../../utils/api/api";
+import { apiData } from "../../../@types/api/api.types";
+import { roundToBeforeDecimal } from "../../../utils/commonFunctions/roundToBeforeDecimal";
 
 const Home = () => {
+  const [apiData, setApiData] = useState<apiData>();
   const navigate = useNavigate();
+
+  const getApiData = useCallback(async () => {
+    const userData = await api();
+
+    if (userData) {
+      setApiData(userData);
+      console.log("userData:", userData);
+    } else {
+      console.error("userData is undefined or does not contain data");
+    }
+  }, []);
+
+  useEffect(() => {
+    getApiData();
+  }, [getApiData]);
 
   return (
     <div className="home">
       <div className="cards-container">
         <div className="text-message">Welcome!!</div>
-        <TopCard bgColor={"#f1e15b"} title={"Total Users"} amount={"527"} />
-        <TopCard bgColor={"#f47560"} title={"Growth"} amount={"10%"} />
+        <TopCard
+          bgColor={"#f1e15b"}
+          title={"Temperature"}
+          amount={roundToBeforeDecimal(apiData?.temperature?.avg as number)}
+        />
+        <TopCard
+          bgColor={"#f47560"}
+          title={"Humidity"}
+          amount={roundToBeforeDecimal(apiData?.humidity?.avg as number)}
+        />
+        <TopCard
+          bgColor={"#f47560"}
+          title={"Other"}
+          amount={roundToBeforeDecimal(apiData?.other?.avg as number)}
+        />
       </div>
       <div className="middle-container">
         <div className="data-table">

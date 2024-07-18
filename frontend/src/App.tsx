@@ -7,15 +7,6 @@ const Home = lazy(() => import("./components/pages/home/Home"));
 const UserInfo = lazy(() => import("./components/pages/usersInfo/UsersInfo"));
 
 const App = () => {
-  const getApiData = useCallback(async () => {
-    const userData = await api();
-    console.log(userData);
-  }, []);
-
-  useEffect(() => {
-    getApiData();
-  }, [getApiData]);
-
   return (
     <div className="App">
       <BrowserRouter>

@@ -1,20 +1,30 @@
-export interface DeviceData {
-  device_id: string;
-  timestamp: string;
+interface sensorValueData {
   temperature: number;
   humidity: number;
   other: number;
 }
 
-export type data = {
-  device_data: DeviceData[];
-  temperature: number;
-  humidity: number;
+export interface DeviceData {
+  device_id: string;
+  sensor_value: sensorValueData;
   other: number;
+}
+
+interface metricsData {
+  avg: number;
+  max: number;
+  min: number;
+}
+
+export type apiData = {
+  device_data: DeviceData[];
+  temperature: metricsData;
+  humidity: metricsData;
+  other: metricsData;
 };
 
 export type apiResponse = {
-  data: data;
+  data: apiData;
   msg: string;
   status: boolean;
 };
