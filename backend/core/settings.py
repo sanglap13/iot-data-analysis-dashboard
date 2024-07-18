@@ -93,7 +93,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'iot-analytics', 
+        'NAME': 'mini-iot-dashboard', 
         'USER': 'postgres',
         'PASSWORD': '1234',
         'HOST': 'localhost',  # Or your PostgreSQL host
