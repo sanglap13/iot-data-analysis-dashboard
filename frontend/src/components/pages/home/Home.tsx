@@ -1,18 +1,15 @@
-import React from "react";
-
-import DeviceBrandPie from "./deviceBrandPie/DeviceBrandPie";
-import VehicleBrandPie from "./vehicleBrandPie/VehicleBrandPie";
-import VehicleBrandBar from "./vehicleBrandBar/VehicleBrandBar";
-import SdkIntBar from "./sdkIntBar/SdkIntBar";
-import VehicleCCPie from "./vehicleCCPie/VehicleCCPie";
-import VehicleSdkStackedBar from "./vehicleSdkStackedBar/VehicleSdkStackedBar";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import { IconButton } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import DeviceBrandPie from "./deviceBrandPie/DeviceBrandPie";
+import SdkIntBar from "./sdkIntBar/SdkIntBar";
+import VehicleBrandBar from "./vehicleBrandBar/VehicleBrandBar";
+import VehicleBrandPie from "./vehicleBrandPie/VehicleBrandPie";
+import VehicleCCPie from "./vehicleCCPie/VehicleCCPie";
 
-import "./home.css";
 import TopCard from "../../shared/topCard/TopCard";
 import UserInfoGrid from "../../shared/userInfoGrid/UserInfoGrid";
+import "./home.css";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -54,10 +51,6 @@ const Home = () => {
           <VehicleCCPie />
         </div>
       </div>
-
-      {/* <div className="stacked-bar-chart-container">
-        <VehicleSdkStackedBar />
-      </div> */}
     </div>
   );
 };
