@@ -1,22 +1,20 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
-import { api } from "../../../utils/api/api";
-import { DATAGRID_COLUMNS } from "../../../constants/userDataGrid";
-import UserDataGrid from "../userDataGrid/UserDataGrid";
 import { GridColDef } from "@mui/x-data-grid";
 import {
   FlattenedUserDataGridInfo,
   UserDataGridInfo,
 } from "../../../@types/dataGrid.types";
-import { apiData } from "../../../@types/api/api.types";
+import { DATAGRID_COLUMNS } from "../../../constants/userDataGrid";
+import { api } from "../../../utils/api/api";
 import { formatTimestamp } from "../../../utils/commonFunctions/formatTimestamp";
+import UserDataGrid from "../userDataGrid/UserDataGrid";
 
 const UserInfoGrid = () => {
   //for ApiCall as well as this is the rows of dataGrid
   const [dataGriduserInfo, setDataGridUserInfo] = useState<
     FlattenedUserDataGridInfo[]
   >([]);
-  const [apiData, setApiData] = useState<apiData>();
 
   const flattenData = (
     data: UserDataGridInfo[]
@@ -34,8 +32,6 @@ const UserInfoGrid = () => {
     const userData = await api();
 
     if (userData) {
-      setApiData(userData);
-      console.log("userData:", userData);
       const flattenedData = flattenData(userData.device_data);
       setDataGridUserInfo(flattenedData);
     } else {

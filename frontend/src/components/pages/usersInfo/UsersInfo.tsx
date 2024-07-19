@@ -1,7 +1,5 @@
-import React from "react";
-
-import "./usersInfo.css";
 import UserInfoGrid from "../../shared/userInfoGrid/UserInfoGrid";
+import "./usersInfo.css";
 
 const UsersInfo = () => {
   return (
