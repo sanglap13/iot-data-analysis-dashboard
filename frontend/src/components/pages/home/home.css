@@ -94,7 +94,8 @@
 @media (width < 935px) {
   .cards-container {
     flex-direction: column;
-    width: 94%;
+    width: 85%;
+    padding: 2rem;
   }
   .text-message {
     width: 95%;
