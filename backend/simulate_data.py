@@ -13,7 +13,7 @@ async def generate_data():
     async with websockets.connect(WS_URL) as websocket:
         while True:
             device_id = random.choice(DEVICE_IDS)
-            temperature = random.uniform(-20.0, 50.0)
+            temperature = random.uniform(-1.0, 50.0)
             humidity = random.uniform(0.0, 100.0)
             other = random.uniform(0.0, 100.0)
             timestamp = datetime.now().isoformat()
@@ -32,7 +32,7 @@ async def generate_data():
 
             await websocket.send(json.dumps(data))
             print(f'Successfully sent data: {data}')
-            await asyncio.sleep(5)
+            await asyncio.sleep(2)
 
 if __name__ == "__main__":
     asyncio.run(generate_data())
