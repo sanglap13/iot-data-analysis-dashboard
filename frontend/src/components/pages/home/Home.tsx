@@ -2,18 +2,15 @@ import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import { IconButton } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import DeviceBrandPie from "./deviceBrandPie/DeviceBrandPie";
-import SdkIntBar from "./sdkIntBar/SdkIntBar";
 import VehicleBrandBar from "./vehicleBrandBar/VehicleBrandBar";
-import VehicleBrandPie from "./vehicleBrandPie/VehicleBrandPie";
-import VehicleCCPie from "./vehicleCCPie/VehicleCCPie";
 
+import { useCallback, useEffect, useState } from "react";
+import { apiData } from "../../../@types/api/api.types";
+import { api } from "../../../utils/api/api";
+import { roundToBeforeDecimal } from "../../../utils/commonFunctions/roundToBeforeDecimal";
 import TopCard from "../../shared/topCard/TopCard";
 import UserInfoGrid from "../../shared/userInfoGrid/UserInfoGrid";
 import "./home.css";
-import { useCallback, useEffect, useState } from "react";
-import { api } from "../../../utils/api/api";
-import { apiData } from "../../../@types/api/api.types";
-import { roundToBeforeDecimal } from "../../../utils/commonFunctions/roundToBeforeDecimal";
 
 const Home = () => {
   const [apiData, setApiData] = useState<apiData>();
@@ -41,17 +38,23 @@ const Home = () => {
         <TopCard
           bgColor={"#f1e15b"}
           title={"Temperature"}
-          amount={roundToBeforeDecimal(apiData?.temperature?.avg as number)}
+          avg={roundToBeforeDecimal(apiData?.temperature?.avg as number)}
+          max={roundToBeforeDecimal(apiData?.temperature?.max as number)}
+          min={roundToBeforeDecimal(apiData?.temperature?.min as number)}
         />
         <TopCard
           bgColor={"#f47560"}
           title={"Humidity"}
-          amount={roundToBeforeDecimal(apiData?.humidity?.avg as number)}
+          avg={roundToBeforeDecimal(apiData?.humidity?.avg as number)}
+          max={roundToBeforeDecimal(apiData?.humidity?.max as number)}
+          min={roundToBeforeDecimal(apiData?.humidity?.min as number)}
         />
         <TopCard
           bgColor={"#f47560"}
           title={"Other"}
-          amount={roundToBeforeDecimal(apiData?.other?.avg as number)}
+          avg={roundToBeforeDecimal(apiData?.other?.avg as number)}
+          max={roundToBeforeDecimal(apiData?.other?.max as number)}
+          min={roundToBeforeDecimal(apiData?.other?.min as number)}
         />
       </div>
       <div className="middle-container">
@@ -73,7 +76,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="bottom-container">
+      {/* <div className="bottom-container">
         <div className="bottom-charts">
           <SdkIntBar />
         </div>
@@ -83,7 +86,7 @@ const Home = () => {
         <div className="bottom-charts">
           <VehicleCCPie />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

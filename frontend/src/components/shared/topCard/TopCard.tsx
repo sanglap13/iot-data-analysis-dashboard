@@ -4,7 +4,7 @@ import React from "react";
 import { TopCardProps } from "../../../@types/props/topCard.types";
 import "./topCard.css";
 
-const TopCard: React.FC<TopCardProps> = ({ bgColor, title, amount }) => {
+const TopCard: React.FC<TopCardProps> = ({ bgColor, title, avg }) => {
   return (
     <Card className="card" sx={{ backgroundColor: bgColor }}>
       <CardContent>
@@ -17,7 +17,7 @@ const TopCard: React.FC<TopCardProps> = ({ bgColor, title, amount }) => {
           {title}
         </Typography>
         <Typography variant="h4" component="div">
-          {amount}
+          {avg}
         </Typography>
       </CardContent>
       <Box>

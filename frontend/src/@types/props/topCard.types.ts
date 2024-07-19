@@ -1,5 +1,7 @@
 export type TopCardProps = {
   bgColor: string;
   title: string;
-  amount: number;
+  avg: number;
+  max: number;
+  min: number;
 };
