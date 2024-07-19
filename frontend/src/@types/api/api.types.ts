@@ -1,4 +1,4 @@
-interface sensorValueData {
+export interface sensorValueData {
   temperature: number;
   humidity: number;
   other: number;
@@ -7,7 +7,7 @@ interface sensorValueData {
 export interface DeviceData {
   device_id: string;
   sensor_value: sensorValueData;
-  other: number;
+  timestamp: string;
 }
 
 interface metricsData {

@@ -1,8 +1,7 @@
 export const DATAGRID_COLUMNS = [
-  { field: 'username', headerName: 'Name', flex: 1 },
-  { field: 'zone', headerName: 'Zone', flex: 1 },
-  { field: 'device_brand', headerName: 'Device Brand', flex: 1 },
-  { field: 'sdk_int', headerName: 'SDK Int', flex: 1 },
-  { field: 'vehicle_brand', headerName: 'Vehicle Brand', flex: 1 },
-  { field: 'vehicle_cc', headerName: 'Vehicle CC', flex: 1 },
+  { field: "device_id", headerName: "Device ID", flex: 1 },
+  { field: "temperature", headerName: "Temperature (C)", flex: 1 },
+  { field: "humidity", headerName: "Humidity (%)", flex: 1 },
+  { field: "other", headerName: "Other", flex: 1 },
+  { field: "timestamp", headerName: "Created At", flex: 1 },
 ];

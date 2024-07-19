@@ -20,7 +20,7 @@ const UserDataGrid: React.FC<any> = ({ dataGridColumns, dataGriduserInfo }) => {
     <div>
       <Box sx={{ height: 700, width: "100%" }}>
         <DataGrid<UserDataGridInfo>
-          getRowId={(row) => row.username}
+          getRowId={(row) => row.timestamp}
           rows={dataGriduserInfo}
           columns={dataGridColumns}
           //   initialState={{

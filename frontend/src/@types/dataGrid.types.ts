@@ -1,8 +1,15 @@
+import { sensorValueData } from "./api/api.types";
+
 export type UserDataGridInfo = {
-  username: string;
-  zone: string;
-  device_brand: string;
-  sdk_int: number;
-  vehicle_brand: string;
-  vehicle_cc: string;
+  device_id: string;
+  sensor_value: sensorValueData;
+  timestamp: string;
+};
+
+export type FlattenedUserDataGridInfo = {
+  device_id: string;
+  temperature: number;
+  humidity: number;
+  other: number;
+  timestamp: string;
 };

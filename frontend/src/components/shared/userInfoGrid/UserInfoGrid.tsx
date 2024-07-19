@@ -4,41 +4,51 @@ import { api } from "../../../utils/api/api";
 import { DATAGRID_COLUMNS } from "../../../constants/userDataGrid";
 import UserDataGrid from "../userDataGrid/UserDataGrid";
 import { GridColDef } from "@mui/x-data-grid";
-import { UserDataGridInfo } from "../../../@types/dataGrid.types";
+import {
+  FlattenedUserDataGridInfo,
+  UserDataGridInfo,
+} from "../../../@types/dataGrid.types";
+import { apiData } from "../../../@types/api/api.types";
+import { formatTimestamp } from "../../../utils/commonFunctions/formatTimestamp";
 
 const UserInfoGrid = () => {
   //for ApiCall as well as this is the rows of dataGrid
-  const [dataGriduserInfo, setDataGridUserInfo] = useState<UserDataGridInfo[]>(
-    []
-  );
+  const [dataGriduserInfo, setDataGridUserInfo] = useState<
+    FlattenedUserDataGridInfo[]
+  >([]);
+  const [apiData, setApiData] = useState<apiData>();
 
-  //header of DataGrid
-  const dataGridColumns: GridColDef[] = DATAGRID_COLUMNS;
+  const flattenData = (
+    data: UserDataGridInfo[]
+  ): FlattenedUserDataGridInfo[] => {
+    return data.map((item) => ({
+      device_id: item.device_id,
+      humidity: Number(item.sensor_value.humidity.toFixed(2)),
+      temperature: Number(item.sensor_value.temperature.toFixed(2)),
+      other: Number(item.sensor_value.other.toFixed(2)),
+      timestamp: formatTimestamp(item.timestamp),
+    }));
+  };
 
-  //fetching data from api or sessionStorage
-  const getUserData = useCallback(async () => {
-    const storedData = sessionStorage.getItem("userData");
-    let userData;
+  const getApiData = useCallback(async () => {
+    const userData = await api();
 
-    if (storedData !== null) {
-      userData = await JSON.parse(storedData);
-    } else {
-      userData = await api();
-    }
-
-    if (userData && userData.data) {
-      const { data } = userData;
-      setDataGridUserInfo(data);
+    if (userData) {
+      setApiData(userData);
       console.log("userData:", userData);
+      const flattenedData = flattenData(userData.device_data);
+      setDataGridUserInfo(flattenedData);
     } else {
       console.error("userData is undefined or does not contain data");
     }
   }, []);
 
-  //fetching data from api or sessionStorage
   useEffect(() => {
-    getUserData();
-  }, [getUserData]);
+    getApiData();
+  }, [getApiData]);
+
+  //header of DataGrid
+  const dataGridColumns: GridColDef[] = DATAGRID_COLUMNS;
 
   return (
     <div>
