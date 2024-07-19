@@ -9,7 +9,7 @@ DataDesk is a mini IoT data analytics platform that simulate data, streaming fro
 
   ## Demo Video Link
 
-  -[https://youtu.be/IeLMJB8YVLA](https://youtu.be/IeLMJB8YVLA)
+- [https://youtu.be/IeLMJB8YVLA](https://youtu.be/IeLMJB8YVLA)
 
 ## Tech Stack
 
