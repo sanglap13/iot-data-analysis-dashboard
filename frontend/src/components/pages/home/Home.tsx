@@ -57,7 +57,7 @@ const Home = () => {
       <div className="middle-container">
         <div className="data-table">
           <div className="data-table-header">
-            <h1 className="title">User Data</h1>
+            <h1 className="title">User Average Data</h1>
             <IconButton onClick={() => navigate("/users")}>
               <OpenInNewIcon />
             </IconButton>
@@ -66,7 +66,7 @@ const Home = () => {
         </div>
         <div className="charts">
           <div className="pie-chart">
-            <DeviceBrandPie />
+            <DeviceBrandPie apiData={apiData} />
           </div>
           <div className="bar-chart">
             <VehicleBrandBar />

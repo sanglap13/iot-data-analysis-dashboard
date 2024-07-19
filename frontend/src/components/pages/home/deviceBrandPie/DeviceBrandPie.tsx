@@ -12,77 +12,75 @@ import { api } from "../../../../utils/api/api";
 import { DeviceBrandDataItem } from "../../../../@types/charts/pieChart.types";
 import PieChart from "../../../shared/charts/pieChart/PieChart";
 import "./deviceBrandPie.css";
+import { apiData } from "../../../../@types/api/api.types";
 
-const DeviceBrandPie = () => {
-  //for apiCall
-  const [apiData, setApidata] = useState<DeviceBrandDataItem[]>([]);
-  //for selecting zone
-  const [deviceBrandZone, setDeviceBrandZone] = useState<string>("Zone_1");
+interface DeviceBrandPieProps {
+  apiData?: apiData;
+}
+
+const DeviceBrandPie = ({ apiData }: DeviceBrandPieProps) => {
+  //for selecting device id
+  const [deviceBrandZone, setDeviceBrandZone] = useState<string>("device_1");
 
   //for changing zone
   const handleDeviceBrandZoneChange = (event: SelectChangeEvent) => {
     setDeviceBrandZone(event.target.value as string);
   };
 
-  //fetching data from api or sessionStorage
-  const getDeviceData = useCallback(async () => {
-    const storedData = sessionStorage.getItem("userData");
-    let userData;
-
-    if (storedData !== null) {
-      userData = await JSON.parse(storedData);
-    } else {
-      userData = await api();
-    }
-
-    if (userData && userData.data) {
-      const { data } = userData;
-      setApidata(data);
-      console.log("userData:", userData);
-    } else {
-      console.error("userData is undefined or does not contain data");
-    }
-  }, []);
-
   const getDeviceBrandDistribution = () => {
-    // for filtering data based on zone
-    const filteredData = apiData.filter(
-      (item) => item.zone === deviceBrandZone
+    if (!apiData || !apiData.device_data) return [];
+
+    // Filter data based on device_id
+    const filteredData = apiData.device_data.filter(
+      (item) => item.device_id === deviceBrandZone
     );
 
-    // for Aggregating data to count occurrences of each device brand
-    const brandDistribution = filteredData.reduce(
-      (accumulator, currentItem) => {
-        const brand = currentItem.device_brand;
-        accumulator[brand] = (accumulator[brand] || 0) + 1;
+    // Aggregate data to calculate average values
+    const aggregatedData = filteredData.reduce(
+      (accumulator, currentItem, _, array) => {
+        accumulator.temperature += currentItem.sensor_value.temperature;
+        accumulator.humidity += currentItem.sensor_value.humidity;
+        accumulator.other += currentItem.sensor_value.other;
+
+        if (array.length - 1) {
+          accumulator.temperature /= array.length;
+          accumulator.humidity /= array.length;
+          accumulator.other /= array.length;
+        }
         return accumulator;
       },
-      {} as { [key: string]: number }
+      { temperature: 0, humidity: 0, other: 0 }
     );
 
-    // for Transforming data into format suitable for Nivo Pie Chart
-    const pieChartData = Object.entries(brandDistribution).map(
-      ([brand, count]) => ({
-        id: brand,
-        label: brand,
-        value: count,
-      })
-    );
+    // Transform data into format suitable for Nivo Pie Chart
+    const pieChartData = [
+      {
+        id: "temperature",
+        label: "Temperature",
+        value: Number(aggregatedData.temperature.toFixed(2)),
+      },
+      {
+        id: "humidity",
+        label: "Humidity",
+        value: Number(aggregatedData.humidity.toFixed(2)),
+      },
+      {
+        id: "other",
+        label: "Other",
+        value: Number(aggregatedData.other.toFixed(2)),
+      },
+    ];
+
     return pieChartData;
   };
-
-  //fetching data from api or sessionStorage
-  useEffect(() => {
-    getDeviceData();
-  }, []);
 
   return (
     <div className="device-brand-pie-container">
       <div className="device-brand-pie-header">
-        <h2>Device Brand</h2>
+        <h2>Device Data</h2>
         <Box sx={{ minWidth: 120 }}>
           <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Zone</InputLabel>
+            <InputLabel id="demo-simple-select-label">Device</InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
@@ -90,10 +88,11 @@ const DeviceBrandPie = () => {
               label="Age"
               onChange={handleDeviceBrandZoneChange}
             >
-              <MenuItem value={"Zone_1"}>Zone 1</MenuItem>
-              <MenuItem value={"Zone_2"}>Zone 2</MenuItem>
-              <MenuItem value={"Zone_3"}>Zone 3</MenuItem>
-              <MenuItem value={"Zone_4"}>Zone 4</MenuItem>
+              <MenuItem value={"device_1"}>Device 1</MenuItem>
+              <MenuItem value={"device_2"}>Device 2</MenuItem>
+              <MenuItem value={"device_3"}>Device 3</MenuItem>
+              <MenuItem value={"device_4"}>Device 4</MenuItem>
+              <MenuItem value={"device_5"}>Device 5</MenuItem>
             </Select>
           </FormControl>
         </Box>
