@@ -4,4 +4,5 @@ export type TopCardProps = {
   avg: number;
   max: number;
   min: number;
+  icon: JSX.Element;
 };

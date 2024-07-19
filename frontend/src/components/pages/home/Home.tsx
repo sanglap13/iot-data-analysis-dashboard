@@ -10,6 +10,11 @@ import { api } from "../../../utils/api/api";
 import { roundToBeforeDecimal } from "../../../utils/commonFunctions/roundToBeforeDecimal";
 import TopCard from "../../shared/topCard/TopCard";
 import UserInfoGrid from "../../shared/userInfoGrid/UserInfoGrid";
+import PeopleIcon from "@mui/icons-material/People";
+import DeviceThermostatIcon from "@mui/icons-material/DeviceThermostat";
+import CloudIcon from "@mui/icons-material/Cloud";
+import AcUnitIcon from "@mui/icons-material/AcUnit";
+
 import "./home.css";
 
 const Home = () => {
@@ -36,18 +41,20 @@ const Home = () => {
       <div className="cards-container">
         <div className="text-message">Welcome!!</div>
         <TopCard
-          bgColor={"#f1e15b"}
+          bgColor={"#e8c0a0"}
           title={"Temperature"}
           avg={roundToBeforeDecimal(apiData?.temperature?.avg as number)}
           max={roundToBeforeDecimal(apiData?.temperature?.max as number)}
           min={roundToBeforeDecimal(apiData?.temperature?.min as number)}
+          icon={<DeviceThermostatIcon />}
         />
         <TopCard
-          bgColor={"#f47560"}
+          bgColor={"#f1e15b"}
           title={"Humidity"}
           avg={roundToBeforeDecimal(apiData?.humidity?.avg as number)}
           max={roundToBeforeDecimal(apiData?.humidity?.max as number)}
           min={roundToBeforeDecimal(apiData?.humidity?.min as number)}
+          icon={<CloudIcon />}
         />
         <TopCard
           bgColor={"#f47560"}
@@ -55,6 +62,7 @@ const Home = () => {
           avg={roundToBeforeDecimal(apiData?.other?.avg as number)}
           max={roundToBeforeDecimal(apiData?.other?.max as number)}
           min={roundToBeforeDecimal(apiData?.other?.min as number)}
+          icon={<AcUnitIcon />}
         />
       </div>
       <div className="middle-container">
