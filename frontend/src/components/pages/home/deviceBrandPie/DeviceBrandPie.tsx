@@ -77,7 +77,7 @@ const DeviceBrandPie = ({ apiData }: DeviceBrandPieProps) => {
   return (
     <div className="device-brand-pie-container">
       <div className="device-brand-pie-header">
-        <h2>Device Data</h2>
+        <h2>Device Average Data</h2>
         <Box sx={{ minWidth: 120 }}>
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Device</InputLabel>
