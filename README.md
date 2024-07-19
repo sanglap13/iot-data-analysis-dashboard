@@ -40,6 +40,7 @@ The backend is built using Django and Django REST Framework, providing a RESTful
    ```
 
 2. Go to `core/setting.py` :
+   Setup a databse, for eg. Postgresql
 
 ```bash
 DATABASES = {
