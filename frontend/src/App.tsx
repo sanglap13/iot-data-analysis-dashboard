@@ -1,4 +1,4 @@
-import { lazy, useCallback, useEffect } from "react";
+import { Suspense, lazy, useCallback, useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "./components/layout/navbar/Navbar";
 import { api } from "./utils/api/api";
@@ -12,10 +12,12 @@ const App = () => {
       <BrowserRouter>
         <main>
           <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/users" element={<UserInfo />} />
-          </Routes>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/users" element={<UserInfo />} />
+            </Routes>
+          </Suspense>
         </main>
       </BrowserRouter>
     </div>
