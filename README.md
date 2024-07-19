@@ -7,6 +7,10 @@ DataDesk is a mini IoT data analytics platform that simulate data, streaming fro
 - [@sanglap13](https://github.com/sanglap13)
   (sanglapmridha@gmail.com)
 
+  ## Demo Video Link
+
+  -[https://youtu.be/IeLMJB8YVLA](https://youtu.be/IeLMJB8YVLA)
+
 ## Tech Stack
 
 **Frontend:** HTML, CSS, React, Typescript.
@@ -49,8 +53,8 @@ DATABASES = {
         'NAME': 'mini-iot-dashboard',
         'USER': 'postgres',
         'PASSWORD': '1234',
-        'HOST': 'localhost',  # Or your PostgreSQL host
-        'PORT': '5433',       # Or your PostgreSQL port
+        'HOST': 'localhost',
+        'PORT': '5433',
     }
 }
 ```
