@@ -9,12 +9,17 @@ import { DATAGRID_COLUMNS } from "../../../constants/userDataGrid";
 import { api } from "../../../utils/api/api";
 import { formatTimestamp } from "../../../utils/commonFunctions/formatTimestamp";
 import UserDataGrid from "../userDataGrid/UserDataGrid";
+import { useWebSocket } from "../../../utils/hooks/useWebSocket";
+
+//header of DataGrid
+const dataGridColumns: GridColDef[] = DATAGRID_COLUMNS;
 
 const UserInfoGrid = () => {
   //for ApiCall as well as this is the rows of dataGrid
   const [dataGriduserInfo, setDataGridUserInfo] = useState<
     FlattenedUserDataGridInfo[]
   >([]);
+  const { deviceData } = useWebSocket();
 
   const flattenData = (
     data: UserDataGridInfo[]
@@ -43,8 +48,31 @@ const UserInfoGrid = () => {
     getApiData();
   }, [getApiData]);
 
-  //header of DataGrid
-  const dataGridColumns: GridColDef[] = DATAGRID_COLUMNS;
+  useEffect(() => {
+    if (deviceData.length > 0) {
+      const newDeviceData = deviceData.map((message) => ({
+        device_id: message.device_id,
+        humidity: message.sensor_value.humidity,
+        temperature: message.sensor_value.temperature,
+        other: message.sensor_value.other,
+        timestamp: formatTimestamp(message.timestamp),
+      }));
+
+      const updatedData = [
+        ...dataGriduserInfo,
+        ...newDeviceData.filter(
+          (item) =>
+            !dataGriduserInfo.some(
+              (existing) =>
+                existing.device_id === item.device_id &&
+                existing.timestamp === item.timestamp
+            )
+        ),
+      ];
+
+      setDataGridUserInfo(updatedData);
+    }
+  }, [deviceData]);
 
   return (
     <div>
