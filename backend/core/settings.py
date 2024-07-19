@@ -40,8 +40,19 @@ INSTALLED_APPS = [
     'rest_framework', 
     'corsheaders',
     'iot',  
+    'channels',
+    'websocket',
     
 ]
+
+ASGI_APPLICATION = 'core.asgi.application'
+
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+    },
+}
 
 
 MIDDLEWARE = [
