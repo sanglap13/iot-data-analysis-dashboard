@@ -1,6 +1,5 @@
 # DataDesk
 
-DashDesk is a cutting-edge Data Visualization Dashboard designed to empower businesses and individuals with actionable insights derived from their data. With intuitive visualization tools and customizable dashboards, DashDesk makes it effortless to explore, analyze, and present complex datasets in a visually compelling manner.
 DataDesk is a mini IoT data analytics platform that simulate data, streaming from multiple IoT devices, store this data in a database and provide basic analytics on the collected data.
 
 ## Author
